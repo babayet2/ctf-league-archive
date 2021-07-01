@@ -1,0 +1,3 @@
+WigleWifi-1.4,appRelease=2.60,model=SM-G965U,release=10,device=star2qltesq,display=QP1A.190711.020.G965USQS9FUCK,board=sdm845,brand=samsung
+MAC,SSID,AuthMode,FirstSeen,Channel,RSSI,CurrentLatitude,CurrentLongitude,AltitudeMeters,AccuracyMeters,Type
+70:70:8b:69:45:fc,osu{OSINT_aint_that_hard},[WPA2-PSK-CCMP][RSN-PSK-CCMP][ESS],2021-04-14 23:16:29,3,-69,-9.3984618,-12.2998885,0.797607421875,5.360000133514404,WIFI

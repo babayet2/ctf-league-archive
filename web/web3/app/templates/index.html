@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h1>Welcome to the SECURE cowsayer</h1>
+    <p>Last time, you figured out how to inject our cowsay commands! This time, we secured our cowsayer a little more.</p>
+    <form action="/cowsay" method="GET">
+        <label for="msg">Make the cow say: </label> <input type="text" id="msg" name="msg" placeholder="moo..."><br>
+        <input type="submit" name="submit" value="MOO!">
+    </form>
+
+    <h1>What should I notice about this challenge?</h1>
+    <ul>
+        <li>You get to have the <a href="/static/Dockerfile">Dockerfile</a> and the <a href="/static/app.py">Flask source code</a>! This should be enough information for you to determine the specific goal of the challenge, as well as the vulnerabilities and restrictions.</li>
+        <li>The backend code uses your user input twice: once as an input to the cowsay command which gets used as input to render_template_string, and once for choosing which file you want to read.</li>
+        <li>Whatever the file you read may be, it MUST not contain the flag according to the check in run.py.</li>
+    </ul>
+    <p>Given the limitation, your challenge is to exploit either the SSTI or directory traversal vulnerability to get you the contents of the flag stored at /flag.txt.</p>
+    <p>I'll let you find resources about each vulnerability type by yourself this time :) Keep in mind what the goal is, and figure out which exploit path you will need to follow to achieve that goal.</p>
+
+    <h1>How to approach any web CTF challenge</h1>
+    <p>Every CTF challenge has a solution. Your job is to figure out how to get to that solution. The first thing you should always do is figure out what the goal is specifically so that it's just a matter of connecting the dots. For example:</p>
+    <ul>
+        <li>Is the flag stored in a file? Then you know that regardless of what vulnerability it is, it <i>must</i> somehow result in you getting read access to arbitrary files. That also narrows down the list of possible vulnerabilities by quite a lot.</li>
+        <li>Must you have remote code execution to access the flag because of how the flag is stored? There are also only so many vulnerabilities that can enable RCE.</li>
+    </ul>
+    <p>Once you've identified the vulnerability, you use the same information (knowing what the goal is) to logically identify what steps must be in place to achieve that goal. "In what way do you need to exploit xyz to get xyz access?"</p>
+    <p>Then, if a step is missing, you know exactly what you must do in the step because you've logically identified each one, so you know what to google search for. There are tons of writeups for everything on the internet.</p>
+    <p>Web challenges may seem intimidating or complicated, but it's really just about breaking it down. In a good CTF challenge, you know exactly what needs to be done in every step (whether or not you actually know <i>how</i>).</p>
+    <p>You can make your life much easier by testing each step individually. Like, try getting each step of an exploit to work on its own first before connecting the steps. In a more complex challenge, solving each step individually will drastically simplify everything. Trust me.</p>
+  </div>
+{% endblock %}

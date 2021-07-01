@@ -1,0 +1,6 @@
+suggested tools: openssl, pycryptodome, gmpy2, sage (optional)
+
+The second problem is encrypted with the flag of the first (both flags should be submitted).
+Decrypt the second problem by runnning the following, then entering the first flag.
+
+openssl enc -d -aes-256-ctr -pbkdf2 -nosalt -p -in rsa2.tar.gz.enc -out rsa2.tar.gz

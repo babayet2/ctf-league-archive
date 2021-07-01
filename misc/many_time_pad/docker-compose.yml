@@ -1,0 +1,11 @@
+version: "3.2"
+services:
+  flask:
+    build: './app/'
+    ports: 
+      - 31308:5000
+  my_first_pwn:
+    build: './my_first_pwn'
+    ports:
+      - 31309:31309
+

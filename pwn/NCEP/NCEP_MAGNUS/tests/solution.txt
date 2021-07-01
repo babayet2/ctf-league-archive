@@ -1,0 +1,23 @@
+The focus this week is to ensure people are capable of doing the reversing. Nobody left behind, make sure every student is running ghidra, we'll focus on the exploitation next week. By the end of the session, each student should be able to:
+1. Identify structs
+2. Insert comments in ghidra
+3. Rename variables and functions
+
+
+To actually exploit this binary:
+
+step 1: getting /bin/bash in memory
+
+enter "INT1" during a context switch to enter the logging menu
+generate a payload with python -c 'print("A" * 0xa00 + "/bin/bash")'
+edit the last log (log ID 4), and put that payload in the description
+delete the log
+exit 
+
+step 2: executing /bin/bash
+enter "INT2" during a context switch to get to the process creation menu
+allocate a new process
+add the process to the scheduler without setting any of the fields
+exit
+
+/bin/bash is now on the scheduler, just play simul chess until you get a shell

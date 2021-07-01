@@ -1,0 +1,95 @@
+{% extends "template.html" %}
+{% block title %}Many Time Pad{% endblock %}
+{% block main %}
+<h1>You're <i>cracked</i></h1>
+  <p>If you have reached this page, it is clear to me that you have an incredibly developed cerebral cortex. You are spiritually and computationally unbounded. <br>
+  Obviously you are a based linux user, so could you please review my linux setup guide below? I'll be sending it to the pwn beginners who might actually benefit from it, since it would be pretty difficult to compete in CTF league challenges without a linux environment. I have seperated install instructions per OS</p>
+  <div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Windows
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+          <p>
+          Local Access (recommended):</br>
+          The simplest method is to install <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux</a>.</br>
+          If you would like an environment in which you can use docker, please follow the link in the MacOS instructions. The same setup can be achieved in the Windows version of VirtualBox, but you will need an SSH client like <a href="https://www.putty.org/">PuTTY</a>.
+          <p>
+          Remote Access:</br>
+          If you prefer not to setup a local linux environment, you may SSH into the OSUSEC ctf workserver. Note that this requires an active OSU account. Accessing our environment is easy, but you will not have the freedom to choose your own tools.
+          <ol>
+              <li> Install the <a href="https://oregonstate.teamdynamix.com/TDClient/1935/Portal/KB/ArticleDet?ID=51154">OSU VPN</a> and connect.</li>
+              <li> Install <a href="https://www.putty.org/">PuTTY</a>. You may choose an alternative client such as <a href="https://mobaxterm.mobatek.net/">MobaXterm</a> for making connections, but PuTTygen will be necessary for key generation.</li>
+              <li> <a href="https://linuxize.com/post/generate-ssh-keys-on-windows-with-puttygen/">Follow the first five steps of this guide</a> to generate a key pair.</li>
+              <li> DM the ctf league discord bot the following command <code>$vm_reg username pubkey_copied_from_previous_step</code>, this will generate a user with your intended name, which will authenticate using your keypair.</li>
+              <li> Wait for approval, or DM an admin asking to have your account quickly approved and registered.</li>
+              <li> Configure your SSH client to use your saved private key for authentication, and open a connection to <code>username@ctf-host.osusec.org</code></li>
+          </ol>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        macOS
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+          <p>
+          Local Access (recommended):</br>
+          Setup a local linux virtual machine and <a href="https://medium.com/nycdev/how-to-ssh-from-a-host-to-a-guest-vm-on-your-local-machine-6cb4c91acc2e">access it via SSH</a></p>
+          <p>
+          Remote Access:</br>
+          If you prefer not to setup a local linux environment, you may SSH into the OSUSEC ctf workserver. Note that this requires an active OSU account. Accessing our environment is easy, but you will not have the freedom to choose your own tools.
+          <ol>
+              <li> Install the <a href="https://oregonstate.teamdynamix.com/TDClient/KB/ArticleDet?ID=51158">OSU VPN</a> and connect.</li>
+              <li> Open a terminal and generate an SSH key using <code>ssh-keygen -t rsa</code>. A passphrase is not required, you may hit enter to leave it blank.</li>
+              <li> Copy the public key you just generated using <code>pbcopy &lt; ~/.ssh/id_rsa.pub</code>.</li>
+              <li> DM the ctf league discord bot the following command <code>$vm_reg username pubkey_copied_from_previous_step</code>, this will generate a user with your intended name, which will authenticate using your keypair.</li>
+              <li> Wait for approval, or DM an admin asking to have your account quickly approved and registered.</li>
+              <li> Connect to the workserver with <code>ssh username@cctf-host.osusec.org</code></li>
+          </ol>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Linux
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+          wat
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<p>After they have set up the linux environment, the beginner hackers would be directed to play a practice challenge. The following instructions are for debian based Operating Systems, such as Ubuntu, the OS in the setup guide. If you are using a different linux OS, I'm sure you will be able to get your own tooling setup.
+<ol>
+    <li>Install pwntools:<br>
+        <code>sudo apt-get update<br>
+            apt-get install python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential<br>
+            sudo python3 -m pip install --upgrade pip<br>
+            sudo python3 -m pip install --upgrade pwntools</code></li>
+    <li>Download this <a href="">practice binary</a> for analysis.<br>
+        <code>wget LINKGOESHERE</code></li>
+    <li>Make the binary executable, and run it to see what it does.<br>
+        <code>chmod +x ./my_first_pwn<br>
+            ./my_first_pwn</code><li>
+    <li>Use objdump or gdb to get the address of the function called "print_the_flag", and find the size of the buffer we will overflow. Googling will go a long way here.</li>
+    <li>Fill in <a href="">this script</a>, use it to exploit the binary remotely and call the print_the_flag function</li>
+{% endblock %}
+

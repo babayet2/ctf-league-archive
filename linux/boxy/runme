@@ -1,0 +1,6 @@
+#!/bin/bash
+
+python3 /root/listeners/listener.py &
+python3 /root/listeners/localhost.py &
+
+/usr/sbin/sshd -D

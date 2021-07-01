@@ -1,0 +1,5 @@
+#!/bin/bash
+#kill containers
+sudo docker rm $(sudo docker stop $(sudo docker ps -a -q --filter ancestor=flasktest --format="{{.ID}}"))
+sudo docker build . -t flasktest
+sudo docker run -p31310:5000 flasktest

@@ -1,0 +1,51 @@
+version: "3.2"
+services:
+  trustee0:
+    build:
+        dockerfile: ./trustees/Dockerfile
+        context: .
+        args:
+            - TrusteePort=31317
+            - TrusteeId=0
+    ports:
+        - "31317:31317"
+    networks:
+        - internal
+    restart: always
+  trustee1:
+    build:
+        dockerfile: ./trustees/Dockerfile
+        context: .
+        args:
+            - TrusteePort=31318
+            - TrusteeId=1
+    ports:
+        - "31318:31318"
+    networks:
+        - internal
+    restart: always
+  trustee2:
+    build:
+        dockerfile: ./trustees/Dockerfile
+        context: .
+        args:
+            - TrusteePort=31319
+            - TrusteeId=2
+    ports:
+        - "31319:31319"
+    networks:
+        - internal
+    restart: always
+
+  lyells_bot:
+    build:
+        dockerfile: ./lyells_bot/Dockerfile
+        context: .
+    ports:
+        - "31320:31320"
+    networks:
+        - internal
+    restart: always
+
+networks:
+    internal:

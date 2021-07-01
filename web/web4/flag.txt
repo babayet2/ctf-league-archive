@@ -1,0 +1,4 @@
+Nice work! Your flag is:
+
+OSUSEC{h0pefully_irl_arb1trary_file_writ3s_w0nt_f33l_th1$_c@nn3d}
+

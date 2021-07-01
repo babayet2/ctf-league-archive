@@ -1,0 +1,17 @@
+{% extends "template.html" %}
+{% block title %}Many Time Pad{% endblock %}
+{% block main %}
+  <h1>Many Time Pad</h1>
+  <p>
+  I really like encrypting messages with <a href="https://en.wikipedia.org/wiki/One-time_pad">One-Time-Pad</a> because it is <a href="https://crypto.stackexchange.com/questions/3896/simply-put-what-does-perfect-secrecy-mean">perfectly secret</a>, so much better than modern crypto techniques which are only secure against computationally bounded attackers. 
+  The <a href="https://web.engr.oregonstate.edu/~rosulekm/crypto/chap1.pdf">first chapter</a> of The Joy of Cryptography taught me Kerckhoff's Principle; all of the security of a cryptosystem must be concentrated in the key rather than the algorithms, so there must be no problem with me sharing the <a href="/source">source code</a> of the web server. There probably isn't any other relevant information in that chapter though, otherwise it would be dumb for me to link it in the challenge.<br>
+  You might find <a href="https://www.python.org/">python</a> useful for this.</p>
+      <form action="/encrypt" method="POST">
+        <div class="form-group">
+          <label>Send me a 256 char message, I'll encrypt it with my secret key and stuff it in an <a href="https://support.stackpath.com/hc/en-us/articles/360001368263-How-To-View-Response-Headers">HTTP response header</a></label>
+            <input type="text" class="form-control" id="message" name="message" placeholder="Enter plaintext here">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+{% endblock %}
+

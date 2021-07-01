@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<title>ALMOST NOPSHIP</title>
+</head>
+<body>
+    <h1>ALMOST NOPSHIP</h1>
+{% if name is not none %}
+    <div class="token">
+        <h2>Hello {{ name }}!</h2>
+    </div>
+{% endif %}
+
+<p>I'm starting to create a new version of nopship.</p>
+<p>Help me out by auditing my code. If you find a vuln, flag is at /flag.</p>
+<a href="/src">Source</a>
+<form action="/">
+    <label for="sname">Team Name: </label>
+    <input type="text" id="name" name="name" value="">
+    <input type="submit" value="Submit">
+</form>  
+<br/>
+<img src="{{url_for('static', filename='almostnopship.png')}}"/>
+
+</body>
+</html>

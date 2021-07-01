@@ -1,0 +1,3 @@
+Nice work! Your flag is:
+
+OSUSEC{ok_s0_y0u_f1gur3d-out_d1rect0ry-tr@versal_w0nt-b3_helpful-here?}

@@ -1,0 +1,51 @@
+version: "3.2"
+services:
+  trustee0:
+    build:
+        dockerfile: ./trustees/Dockerfile
+        context: .
+        args:
+            - TrusteePort=31327
+            - TrusteeId=0
+    ports:
+        - "31327:31327"
+    networks:
+        - internal
+    restart: always
+  trustee1:
+    build:
+        dockerfile: ./trustees/Dockerfile
+        context: .
+        args:
+            - TrusteePort=31328
+            - TrusteeId=1
+    ports:
+        - "31328:31328"
+    networks:
+        - internal
+    restart: always
+  trustee2:
+    build:
+        dockerfile: ./trustees/Dockerfile
+        context: .
+        args:
+            - TrusteePort=31329
+            - TrusteeId=2
+    ports:
+        - "31329:31329"
+    networks:
+        - internal
+    restart: always
+
+  stans_bot:
+    build:
+        dockerfile: ./stans_bot/Dockerfile
+        context: .
+    ports:
+        - "31330:31330"
+    networks:
+        - internal
+    restart: always
+
+networks:
+    internal:

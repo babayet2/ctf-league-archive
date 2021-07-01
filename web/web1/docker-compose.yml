@@ -1,0 +1,35 @@
+version: "3.2"
+services:
+  php:
+    build: './php/'
+    networks:
+      - backend
+    volumes:
+      - ./public_html/:/var/www/html/
+  apache:
+    build: './apache/'
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "31302:80"
+    volumes:
+      - ./public_html/:/var/www/html/
+  mysql:
+    image: mysql:5.6.40
+    #image: mysql:5.7
+    volumes:
+        - ./mysql:/tmp/mysql
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=lance_carry_our_crypto_plz
+      - MYSQL_DATABASE=db
+    command: mysqld --init-file="/tmp/mysql/schema.sql"
+networks:
+  frontend:
+  backend:
+
